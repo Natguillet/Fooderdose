@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 929b43c32a901524b980bcd311b14e66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedTravelator: 5
+  speedTravelator: 2
   food: {fileID: 1643831086887040, guid: 87fbe519c88f5e645a916113dfb9434f, type: 2}
 --- !u!1 &1799932778
 GameObject:

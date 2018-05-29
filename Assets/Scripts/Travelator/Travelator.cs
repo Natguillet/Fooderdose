@@ -24,7 +24,7 @@ public class Travelator : MonoBehaviour {
     // Use this for initialization
     void Start () {
         spawnPoint = GetComponentInChildren<Transform>();
-        InvokeRepeating("Spawn", speedTravelator, speedTravelator);
+        InvokeRepeating("Spawn", 1/speedTravelator, 1/speedTravelator);
     }
 
     void Spawn()
