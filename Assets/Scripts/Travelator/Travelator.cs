@@ -5,6 +5,8 @@ using UnityEngine;
 public class Travelator : MonoBehaviour {
 
     [SerializeField] private float speedTravelator = 1f;
+    [SerializeField]
+    private float interval = 1f;
     [SerializeField] private GameObject food;
     private Transform spawnPoint;
 
@@ -24,7 +26,7 @@ public class Travelator : MonoBehaviour {
     // Use this for initialization
     void Start () {
         spawnPoint = GetComponentInChildren<Transform>();
-        InvokeRepeating("Spawn", 1/speedTravelator, 1/speedTravelator);
+        InvokeRepeating("Spawn", 1/speedTravelator, 1/speedTravelator * interval);
     }
 
     void Spawn()
