@@ -5,9 +5,9 @@ using UnityEngine;
 public class Travelator : MonoBehaviour {
 
     [SerializeField] private float speedTravelator = 1f;
-    [SerializeField]
-    private float interval = 1f;
+    [SerializeField] private float interval = 1f;
     [SerializeField] private GameObject food;
+    [SerializeField] private List<Ingredient> ingredients;
     private Transform spawnPoint;
 
     public float SpeedTravelator
@@ -33,6 +33,7 @@ public class Travelator : MonoBehaviour {
     {
         // Create an instance of the food prefab at the spawn point's position and rotation.
         GameObject newFood = Instantiate(food, spawnPoint.position, spawnPoint.rotation);
+        newFood.GetComponent<IngredientDisplay>().ingredient = ingredients[Random.Range(0, ingredients.Count)];
         newFood.transform.parent = gameObject.transform;
     }
 }
