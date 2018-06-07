@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: Salad
   m_EditorClassIdentifier: 
   name: Salad
-  points: 2
+  points: -2
   artwork: {fileID: 21300000, guid: 21674fa834c0c8e41ad8cd8baf15eb33, type: 3}
