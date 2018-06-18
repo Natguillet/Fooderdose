@@ -21,7 +21,7 @@ public class Eat : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown("space") && inRange) // if the player hit space and the food is in range, destroy the food
         {
-            if (gameObject.GetComponent<IngredientDisplay>().ingredient.points < 0)
+            if (gameObject.GetComponent<IngredientDisplay>().ingredient.getPoints() < 0)
             {
                 score.ResetEatStreak();
                 player.ChangeHumor("puke");
@@ -31,7 +31,7 @@ public class Eat : MonoBehaviour {
                 score.AddEatStreak();
                 player.ChangeHumor("happy");
             }
-            score.AddScore(gameObject.GetComponent<IngredientDisplay>().ingredient.points);
+            score.AddScore(gameObject.GetComponent<IngredientDisplay>().ingredient.getPoints());
             Destroy(gameObject);
         }
     }

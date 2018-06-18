@@ -283,11 +283,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedTravelator: 2
   interval: 5
-  food: {fileID: 1604789091516868, guid: da1d8ee28a85f4a4e8d803dd0d7806c1, type: 2}
-  ingredients:
-  - {fileID: 11400000, guid: 9f337a925c69369409b010199a93aa50, type: 2}
-  - {fileID: 11400000, guid: 9d4c538a3d933fa4cb018b255b4cf513, type: 2}
-  - {fileID: 11400000, guid: 1bfbe5c2dc9e03f4a84d27c9ba63b0a7, type: 2}
+  ingredient: {fileID: 1604789091516868, guid: da1d8ee28a85f4a4e8d803dd0d7806c1, type: 2}
+  dish: {fileID: 1676475236796338, guid: 7c94feea9f1f0924a8cf0d714785e1b1, type: 2}
 --- !u!1001 &1521749795
 Prefab:
   m_ObjectHideFlags: 0
