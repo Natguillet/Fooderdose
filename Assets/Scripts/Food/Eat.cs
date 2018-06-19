@@ -22,19 +22,28 @@ public class Eat : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown("space") && inRange) // if the player hit space and the food is in range, destroy the food
         {
-            if (player.GetAllergie() == gameObject.GetComponent<IngredientDisplay>().ingredient.name)
+            if (gameObject.GetComponent<IngredientDisplay>() && player.GetAllergie() == gameObject.GetComponent<IngredientDisplay>().ingredient.name
+                || gameObject.GetComponent<DishDisplay>() && player.GetAllergie() == gameObject.GetComponent<DishDisplay>().dish.name)
             {
                 score.ResetEatStreak();
                 score.AddScore(-100);
                 player.ChangeHumor("puke");
             }
-            else
+            else if (gameObject.GetComponent<IngredientDisplay>())
             {
                 score.AddEatStreak();
-                score.AddScore(gameObject.GetComponent<IngredientDisplay>().ingredient.points);
+                score.AddScore(gameObject.GetComponent<IngredientDisplay>().ingredient.getPoints());
                 player.ChangeHumor("happy");
                 player.AddCountFood(gameObject.GetComponent<IngredientDisplay>().ingredient.name);
             }
+            else if (gameObject.GetComponent<DishDisplay>())
+            {
+                score.AddEatStreak();
+                score.AddScore(gameObject.GetComponent<DishDisplay>().dish.getPoints());
+                player.ChangeHumor("happy");
+                player.AddCountFood(gameObject.GetComponent<DishDisplay>().dish.name);
+            }
+
             Destroy(gameObject);
             player.ResetFail();
         }

@@ -7,8 +7,10 @@ public class IngredientDisplay : MonoBehaviour {
 
     public Ingredient ingredient;
 
+    public SpriteRenderer artworkImage;
+
     // Use this for initialization
     void Start () {
-        GetComponent<SpriteRenderer>().sprite = ingredient.artwork;
+        artworkImage.sprite = ingredient.artwork;
 	}
 }
