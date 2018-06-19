@@ -11,17 +11,26 @@ public class Player : MonoBehaviour {
     private Dictionary<string, int> foodEat = new Dictionary<string, int>();
     private string allergie;
     private int fail = 0;
+    private bool loose = false;
 
 	// Use this for initialization
 	void Start () {
-        foodEat.Add("Bread", 0);
-        foodEat.Add("Salad", 0);
-        foodEat.Add("Tomate", 0);
+
+        Object[] ressources = Resources.LoadAll("Ingredients", typeof(Ingredient));
+        foreach (var t in ressources)
+        {
+            foodEat.Add(t.name, 0);
+        }
     }
 	
 	// Update is called once per frame
 	void Update () {
         ChangeFace();
+        if(fail >= 3)
+        {
+            loose = true;
+            Debug.Log("YOU LOOSE");
+        }
     }
 
     public void ChangeFace()
