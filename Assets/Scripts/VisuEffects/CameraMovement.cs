@@ -18,7 +18,7 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private float moveAngle;
     [SerializeField] private float moveTime;//duration of the camera movement
 
-    //[SerializeField] private float bloomOffset; //softknee offset between 0 and 1
+    [SerializeField] private float bloomOffset; //softknee offset between 0 and 1
     [SerializeField] private float bloomTransitionTime;
 
     [SerializeField] private float chromFreq;
