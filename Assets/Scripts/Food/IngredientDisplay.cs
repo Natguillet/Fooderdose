@@ -11,6 +11,6 @@ public class IngredientDisplay : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        artworkImage.sprite = ingredient.Artwork;
+        artworkImage.sprite = ingredient.artwork;
 	}
 }

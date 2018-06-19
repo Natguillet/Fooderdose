@@ -13,7 +13,7 @@ public class DishDisplay : MonoBehaviour {
 	void Start () {
         artworkImage.sprite = dish.artwork;
         for (int i = 0; i < dish.ingredients.Count; i++) {
-            ingredientImage[i].sprite = dish.ingredients[i].Artwork;
+            ingredientImage[i].sprite = dish.ingredients[i].artwork;
             ingredientImage[i].transform.parent.gameObject.SetActive(true);
         }
     }

@@ -7,7 +7,7 @@ public class Ingredient : ScriptableObject, IFood {
 
     private new string name;
     private int points;
-    private Sprite artwork;
+    public Sprite artwork;
 
     public string Name
     {
@@ -19,19 +19,6 @@ public class Ingredient : ScriptableObject, IFood {
         set
         {
             name = value;
-        }
-    }
-
-    public Sprite Artwork
-    {
-        get
-        {
-            return artwork;
-        }
-
-        set
-        {
-            artwork = value;
         }
     }
 
