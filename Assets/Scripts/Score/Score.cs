@@ -33,7 +33,8 @@ public class Score : MonoBehaviour {
 
     public void AddScore(int scoreValue)
     {
-        scoring  = scoring + (scoreValue * multiplicateur);
+        if (scoreValue > 0) scoring = scoring + (scoreValue * multiplicateur);
+        else scoring = scoring + scoreValue;
     }
 
     public void AddEatStreak()

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
@@ -7,14 +8,21 @@ public class Player : MonoBehaviour {
     private string humor;
     [SerializeField] private Sprite happy;
     [SerializeField] private Sprite puke;
+    private Dictionary<string, int> foodEat = new Dictionary<string, int>();
+    private string allergie;
+    private int fail = 0;
+
 	// Use this for initialization
 	void Start () {
-		
-	}
+        foodEat.Add("Bread", 0);
+        foodEat.Add("Salad", 0);
+        foodEat.Add("Tomate", 0);
+    }
 	
 	// Update is called once per frame
 	void Update () {
         ChangeFace();
+        Debug.Log(fail);
     }
 
     public void ChangeFace()
@@ -30,8 +38,38 @@ public class Player : MonoBehaviour {
         }
     }
 
+    public void AddCountFood(string food)
+    {
+        foodEat[food]++;
+        ChangeAllergie(food);
+    }
+
     public void ChangeHumor(string newHumor)
     {
         humor = newHumor;
+    }
+
+    public void ChangeAllergie(string food)
+    {
+        if (foodEat[food] == 3)
+        {
+            allergie = food;
+            foodEat[food] = 0;
+        }
+    }
+
+    public string GetAllergie()
+    {
+        return allergie;
+    }
+
+    public void AddFail()
+    {
+        fail++;
+    }
+
+    public void ResetFail()
+    {
+        fail = 0;
     }
 }
