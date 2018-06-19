@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: Bread
   m_EditorClassIdentifier: 
   name: Bread
-  points: 1
+  points: 10
   artwork: {fileID: 21300000, guid: 8588e5bc586e20d45b2e1cc9c0d03e22, type: 3}

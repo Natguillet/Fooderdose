@@ -62,7 +62,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1893167314429100}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10, y: -3, z: 0}
+  m_LocalPosition: {x: -10, y: -2.44, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4143349076152820}
@@ -81,9 +81,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedTravelator: 2
-  interval: 5
-  food: {fileID: 1604789091516868, guid: da1d8ee28a85f4a4e8d803dd0d7806c1, type: 2}
-  ingredients:
-  - {fileID: 11400000, guid: 9f337a925c69369409b010199a93aa50, type: 2}
-  - {fileID: 11400000, guid: 9d4c538a3d933fa4cb018b255b4cf513, type: 2}
-  - {fileID: 11400000, guid: 1bfbe5c2dc9e03f4a84d27c9ba63b0a7, type: 2}
+  interval: 10
+  ingredient: {fileID: 1676475236796338, guid: 7c94feea9f1f0924a8cf0d714785e1b1, type: 2}
+  dish: {fileID: 1604789091516868, guid: da1d8ee28a85f4a4e8d803dd0d7806c1, type: 2}
