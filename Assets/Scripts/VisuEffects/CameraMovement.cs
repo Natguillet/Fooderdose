@@ -6,16 +6,19 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
+    /*
     [SerializeField] private bool end = false;
     [SerializeField] private bool updateBloom = false;
     [SerializeField] private bool starve = false;
+    [SerializeField] private bool init = false;
     [SerializeField] private int multiplier;
+    */
 
     [SerializeField] private float moveRadius;  //radius of the camera circular movement
     [SerializeField] private float moveAngle;
     [SerializeField] private float moveTime;//duration of the camera movement
 
-    [SerializeField] private float bloomOffset; //softknee offset between 0 and 1
+    //[SerializeField] private float bloomOffset; //softknee offset between 0 and 1
     [SerializeField] private float bloomTransitionTime;
 
     [SerializeField] private float chromFreq;
@@ -41,18 +44,22 @@ public class CameraMovement : MonoBehaviour
     public void InitializeVisuEffect()
     {
         //enabling motion blur
-        postProcessing.enableMotionBlur = true;
         postProcessing.controlMotionBlur = true;
+        postProcessing.enableMotionBlur = true;
         //tuning settings
+        /*
         MotionBlurModel.Settings blurSettings = new MotionBlurModel.Settings();
         blurSettings.shutterAngle = 2f;
         blurSettings.sampleCount = 15;
         blurSettings.frameBlending = 0.7f;
         postProcessing.motionBlur = blurSettings;
 
+    */
+
         //enable vignette effect
-        postProcessing.enableVignette = true;
         postProcessing.controlVignette = true;
+        postProcessing.enableVignette = true;
+        /*
         //tuning settings
         VignetteModel.Settings vignetteSettings = new VignetteModel.Settings();
         vignetteSettings.intensity = 0f;
@@ -60,10 +67,12 @@ public class CameraMovement : MonoBehaviour
         vignetteSettings.roundness = 1;
         vignetteSettings.center = new Vector2(0.5f, 0.5f);
         postProcessing.vignette = vignetteSettings;
+        */
 
         //enable bloom effect
-        postProcessing.enableBloom = true;
         postProcessing.controlBloom = true;
+        postProcessing.enableBloom = true;
+        /*
         //tuning settings;
         BloomModel.Settings bloomSettings = new BloomModel.Settings();
         bloomSettings.bloom.intensity = 1.2f;
@@ -73,21 +82,31 @@ public class CameraMovement : MonoBehaviour
         postProcessing.bloom = bloomSettings;
         currentBloomFactor = 0;
         isBlooming = false;
+        */
 
         //enable chromatic aberration effect
-        postProcessing.enableChromaticAberration = true;
         postProcessing.controlChromaticAberration = true;
+        postProcessing.enableChromaticAberration = true;
         //tuning settings
+        /*
         ChromaticAberrationModel.Settings chromaSettings = new ChromaticAberrationModel.Settings();
-        chromaSettings.intensity = 0;
+        chromaSettings.intensity = 0f;
+        */
         isStarving = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (end)
+        /*
+        if (init)
         {
+            init = false;
+            InitializeVisuEffect();
+        }
+
+        if (end)
+        {            
             end = false;
             LaunchEndGameEffect();
         }
@@ -102,8 +121,7 @@ public class CameraMovement : MonoBehaviour
             starve = false;
             SetStarvation(isStarving);
         }
-        
-        
+        */
     }
 
     public void SetStarvation(bool starve)
@@ -136,6 +154,7 @@ public class CameraMovement : MonoBehaviour
             yield return new WaitForEndOfFrame();
             time += Time.deltaTime;
         }
+        postProcessing.chromaticAberration.intensity = 0;
     }
 
     public void UpdateBloomEffect(int multiplier)
@@ -174,7 +193,7 @@ public class CameraMovement : MonoBehaviour
         float time = 0;
         while (time < moveTime)
         {
-            postProcessing.vignette.intensity = 0.3f + (time / moveTime) * 1.7f;
+            postProcessing.vignette.intensity = 0.3f + (time / moveTime) * 0.7f;
             yield return new WaitForEndOfFrame();
             time += Time.deltaTime;
         }
@@ -211,5 +230,7 @@ public class CameraMovement : MonoBehaviour
         //prevent small perturbation from origin
         transform.position = offset;
         transform.rotation = Quaternion.Euler(Vector3.zero);
+
+        InitializeVisuEffect();
     }
 }

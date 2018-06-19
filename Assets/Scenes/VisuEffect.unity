@@ -223,10 +223,11 @@ MonoBehaviour:
   end: 0
   updateBloom: 0
   starve: 0
+  init: 0
   multiplier: 0
   moveRadius: 0.2
   moveAngle: 5
-  moveTime: 4
+  moveTime: 3
   bloomOffset: 0.4
   bloomTransitionTime: 2
   chromFreq: 2
@@ -309,7 +310,7 @@ MonoBehaviour:
     speedDown: 0
     logMin: 0
     logMax: 0
-  controlBloom: 0
+  controlBloom: 1
   enableBloom: 0
   bloom:
     bloom:
@@ -445,7 +446,7 @@ MonoBehaviour:
   userLut:
     lut: {fileID: 0}
     contribution: 0
-  controlChromaticAberration: 0
+  controlChromaticAberration: 1
   enableChromaticAberration: 0
   chromaticAberration:
     spectralTexture: {fileID: 0}
@@ -457,7 +458,7 @@ MonoBehaviour:
     intensity: 0
     size: 0
     luminanceContribution: 0
-  controlVignette: 0
+  controlVignette: 1
   enableVignette: 0
   vignette:
     mode: 0
