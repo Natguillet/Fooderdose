@@ -11,6 +11,7 @@ public class Player : MonoBehaviour {
     private Dictionary<string, int> foodEat = new Dictionary<string, int>();
     private string allergie;
     private int fail = 0;
+    private bool loose = false;
 
 	// Use this for initialization
 	void Start () {
@@ -22,7 +23,11 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         ChangeFace();
-        Debug.Log(fail);
+        if(fail >= 3)
+        {
+            loose = true;
+            Debug.Log("YOU LOOSE");
+        }
     }
 
     public void ChangeFace()
