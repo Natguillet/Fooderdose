@@ -15,9 +15,12 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        foodEat.Add("Bread", 0);
-        foodEat.Add("Salad", 0);
-        foodEat.Add("Tomate", 0);
+
+        Object[] ressources = Resources.LoadAll("Ingredients", typeof(Ingredient));
+        foreach (var t in ressources)
+        {
+            foodEat.Add(t.name, 0);
+        }
     }
 	
 	// Update is called once per frame

@@ -22,8 +22,9 @@ public class Eat : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown("space") && inRange) // if the player hit space and the food is in range, destroy the food
         {
+            Debug.Log("Space");
             if (gameObject.GetComponent<IngredientDisplay>() && player.GetAllergie() == gameObject.GetComponent<IngredientDisplay>().ingredient.name
-                || gameObject.GetComponent<DishDisplay>() && player.GetAllergie() == gameObject.GetComponent<DishDisplay>().dish.name)
+                || gameObject.GetComponent<DishDisplay>() && CheckDishAllergie())
             {
                 score.ResetEatStreak();
                 score.AddScore(-100);
@@ -41,12 +42,28 @@ public class Eat : MonoBehaviour {
                 score.AddEatStreak();
                 score.AddScore(gameObject.GetComponent<DishDisplay>().dish.getPoints());
                 player.ChangeHumor("happy");
-                player.AddCountFood(gameObject.GetComponent<DishDisplay>().dish.name);
+                for (int i = 0; i < gameObject.GetComponent<DishDisplay>().dish.ingredients.Count; i++)
+                {
+                    player.AddCountFood(gameObject.GetComponent<DishDisplay>().dish.ingredients[i].name);
+                }
             }
 
             Destroy(gameObject);
             player.ResetFail();
         }
+    }
+
+    public bool CheckDishAllergie()
+    {
+        bool dishAllergie = false;
+        for(int i =0; i< gameObject.GetComponent<DishDisplay>().dish.ingredients.Count; i++)
+        {
+            if (player.GetAllergie() == gameObject.GetComponent<DishDisplay>().dish.ingredients[i].name)
+            {
+                dishAllergie = true;
+            }
+        }
+        return dishAllergie;
     }
 
     void OnTriggerEnter2D(Collider2D col)
