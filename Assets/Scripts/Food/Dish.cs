@@ -6,7 +6,7 @@ using UnityEngine;
 public class Dish : ScriptableObject, IFood
 {
 
-    private new string name;
+    public new string name;
     public Sprite artwork;
 
     public List<Ingredient> ingredients;

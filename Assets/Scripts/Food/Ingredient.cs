@@ -5,8 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Ingredient", menuName = "Ingredient")]
 public class Ingredient : ScriptableObject, IFood {
 
-    private new string name;
-    private int points;
+    public new string name;
+    public int points;
     public Sprite artwork;
 
     public string Name

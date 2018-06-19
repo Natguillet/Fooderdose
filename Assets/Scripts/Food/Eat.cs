@@ -8,6 +8,7 @@ public class Eat : MonoBehaviour {
     private bool inRange = false; // detect if the food can be eat or not
     private Player player;
     private Score score;
+    
         void Start () {
         GameObject scoreGameObject = GameObject.FindWithTag("Score");
         if (scoreGameObject != null) score = scoreGameObject.GetComponent<Score>();
@@ -21,28 +22,44 @@ public class Eat : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown("space") && inRange) // if the player hit space and the food is in range, destroy the food
         {
-            if (gameObject.GetComponent<IngredientDisplay>().ingredient.getPoints() < 0)
+            if (gameObject.GetComponent<IngredientDisplay>() && player.GetAllergie() == gameObject.GetComponent<IngredientDisplay>().ingredient.name
+                || gameObject.GetComponent<DishDisplay>() && player.GetAllergie() == gameObject.GetComponent<DishDisplay>().dish.name)
             {
                 score.ResetEatStreak();
+                score.AddScore(-100);
                 player.ChangeHumor("puke");
             }
-            else
+            else if (gameObject.GetComponent<IngredientDisplay>())
             {
                 score.AddEatStreak();
+                score.AddScore(gameObject.GetComponent<IngredientDisplay>().ingredient.getPoints());
                 player.ChangeHumor("happy");
+                player.AddCountFood(gameObject.GetComponent<IngredientDisplay>().ingredient.name);
             }
-            score.AddScore(gameObject.GetComponent<IngredientDisplay>().ingredient.getPoints());
+            else if (gameObject.GetComponent<DishDisplay>())
+            {
+                score.AddEatStreak();
+                score.AddScore(gameObject.GetComponent<DishDisplay>().dish.getPoints());
+                player.ChangeHumor("happy");
+                player.AddCountFood(gameObject.GetComponent<DishDisplay>().dish.name);
+            }
+
             Destroy(gameObject);
+            player.ResetFail();
         }
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.name == "PlayerRange") inRange = true;
+        if (col.gameObject.name == "PlayerNoRange") player.AddFail();
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
-        if (col.gameObject.name == "PlayerRange") inRange = false;
+        if (col.gameObject.name == "PlayerRange")
+        {
+            inRange = false;
+        }
     }
 }
