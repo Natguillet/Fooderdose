@@ -83,7 +83,7 @@ public class Score : MonoBehaviour {
 
     private void ChangeMultiplicateur(int m)
     {
-        cameraController.UpdateBloomEffect(m);
+        //cameraController.UpdateBloomEffect(m);
         multiplicateur = m;
     }
 

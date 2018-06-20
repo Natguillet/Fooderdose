@@ -1174,6 +1174,11 @@ Prefab:
     - target: {fileID: 20806781412745830, guid: 3cfd3ca9e0d525e43b6b28fdf59c1c88,
         type: 2}
       propertyPath: m_AllowMSAA
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114440881789130950, guid: 3cfd3ca9e0d525e43b6b28fdf59c1c88,
+        type: 2}
+      propertyPath: bloomOffset
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

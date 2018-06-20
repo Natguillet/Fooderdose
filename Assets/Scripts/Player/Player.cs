@@ -97,7 +97,7 @@ public class Player : MonoBehaviour {
     {
         fail++;
         if (fail == 2) cameraController.SetStarvation(true);
-        if (fail >= 3)
+        if (fail == 3)
         {
             loose = true;
             EndGame();

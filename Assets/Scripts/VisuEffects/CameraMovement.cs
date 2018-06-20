@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
+
+    public PostProcessingBehaviour behaviour;
     [SerializeField] private bool end = false;
     [SerializeField] private bool updateBloom = false;
     [SerializeField] private bool starve = false;
@@ -33,6 +35,8 @@ public class CameraMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        behaviour = GetComponent<PostProcessingBehaviour>();
+        behaviour.enabled = false;
         offset = transform.position;
         postProcessing = GetComponent<PostProcessingController>();
         if (postProcessing != null)
@@ -131,6 +135,7 @@ public class CameraMovement : MonoBehaviour
 
     private IEnumerator StartStarvation()
     {
+        behaviour.enabled = true;
         float time = 0;
         while (isStarving)
         {
@@ -151,6 +156,7 @@ public class CameraMovement : MonoBehaviour
             time += Time.deltaTime;
         }
         postProcessing.chromaticAberration.intensity = 0;
+        behaviour.enabled = false;
     }
 
     public void UpdateBloomEffect(int multiplier)
@@ -186,6 +192,7 @@ public class CameraMovement : MonoBehaviour
 
     private IEnumerator ClosingEyeEffect()
     {
+        behaviour.enabled = true;
         float time = 0;
         while (time < moveTime)
         {
@@ -193,6 +200,7 @@ public class CameraMovement : MonoBehaviour
             yield return new WaitForEndOfFrame();
             time += Time.deltaTime;
         }
+        behaviour.enabled = false;
     }
 
     private IEnumerator CameraCircle()
@@ -226,7 +234,5 @@ public class CameraMovement : MonoBehaviour
         //prevent small perturbation from origin
         transform.position = offset;
         transform.rotation = Quaternion.Euler(Vector3.zero);
-
-        InitializeVisuEffect();
     }
 }
