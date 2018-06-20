@@ -7,8 +7,11 @@ public class Score : MonoBehaviour {
     private int scoring = 0;
     private int multiplicateur = 1;
     private int eatStreak = 0;
-    private int highScore = 0;
-    string highScoreKey = "HighScore";
+    //private int highScore = 0;
+    //string highScoreKey = "HighScore";
+    //private int[] highScores = new int[10];
+    string highScoreKey = "";
+    private CameraMovement cameraController;
 
     public int Scoring
     {
@@ -25,22 +28,31 @@ public class Score : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        highScore = PlayerPrefs.GetInt(highScoreKey, 0);
-	}
+        /*for (int i = 0; i < highScores.Length; i++)
+        {
+            highScoreKey = "HighScore" + (i + 1).ToString();
+            highScores[i] = PlayerPrefs.GetInt(highScoreKey, 0);
+        }*/
+        cameraController = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
         CalculateMultiplicateur();
-        if (scoring > highScore)
+        /*for (int i = 0; i < highScores.Length; i++)
         {
-            PlayerPrefs.SetInt(highScoreKey, scoring);
-            PlayerPrefs.Save();
-        }
+            if (scoring > highScores[i])
+            {
+                highScoreKey = "HighScore" + (i + 1).ToString();
+                PlayerPrefs.SetInt(highScoreKey, scoring);
+                PlayerPrefs.Save();
+            }
+        }*/
     }
 
     public void AddScore(int scoreValue)
     {
-        Debug.Log(scoreValue);
+        //Debug.Log(scoreValue);
         if (scoreValue > 0) scoring = scoring + (scoreValue * multiplicateur);
         else scoring = scoring + scoreValue;
     }
@@ -70,21 +82,27 @@ public class Score : MonoBehaviour {
         switch(eatStreak)
         {
             case 0:
-                multiplicateur = 1;
+                ChangeMultiplicateur(1);
                 break;
             case 3:
-                multiplicateur = 2;
+                ChangeMultiplicateur(2);
                 break;
             case 6:
-                multiplicateur = 3;
+                ChangeMultiplicateur(3);
                 break;
             case 10:
-                multiplicateur = 4;
+                ChangeMultiplicateur(4);
                 break;
             case 15:
-                multiplicateur = 5;
+                ChangeMultiplicateur(5);
                 break;
         }
+    }
+
+    private void ChangeMultiplicateur(int m)
+    {
+        cameraController.UpdateBloomEffect(m);
+        multiplicateur = m;
     }
 
 }

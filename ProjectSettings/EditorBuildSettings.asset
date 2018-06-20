@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EatScene.unity
     guid: a6f0ea5f9f8b8ba4d897b5aa48d6d0e5
+  - enabled: 1
+    path: Assets/Scenes/ScoreScene.unity
+    guid: d5c91971595f5644196ecc561cee132b
+  - enabled: 1
+    path: Assets/Scenes/LeaderBoardScene.unity
+    guid: 22359c023078d0a40ba18707f51005d3
   m_configObjects: {}

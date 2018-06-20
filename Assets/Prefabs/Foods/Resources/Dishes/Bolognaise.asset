@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 781352a8cba30394bbdc687f44266337, type: 3}
+  m_Name: Bolognaise
+  m_EditorClassIdentifier: 
+  name: Bolognaise
+  artwork: {fileID: 21300000, guid: b683cf3a8ddc41742be42a7ebde5b779, type: 3}
+  ingredients:
+  - {fileID: 11400000, guid: a3aa46382de8f594f8d6929871aa74fb, type: 2}
+  - {fileID: 11400000, guid: 1bfbe5c2dc9e03f4a84d27c9ba63b0a7, type: 2}
+  - {fileID: 11400000, guid: fc37a76e58587864f8b2e8ca703a0a3c, type: 2}

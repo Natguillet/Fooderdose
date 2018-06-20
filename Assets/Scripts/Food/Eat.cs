@@ -8,8 +8,11 @@ public class Eat : MonoBehaviour {
     private bool inRange = false; // detect if the food can be eat or not
     private Player player;
     private Score score;
+    private bool isAllergic;
+    private bool computeAllergies = true;
+    private bool isEaten = false;
     
-        void Start () {
+    void Start () {
         GameObject scoreGameObject = GameObject.FindWithTag("Score");
         if (scoreGameObject != null) score = scoreGameObject.GetComponent<Score>();
         else Debug.Log("Cannot find score GameObject");
@@ -20,11 +23,19 @@ public class Eat : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (computeAllergies && inRange)
+        {
+            isAllergic = (gameObject.GetComponent<IngredientDisplay>() && player.GetAllergie() == gameObject.GetComponent<IngredientDisplay>().ingredient.name
+                || gameObject.GetComponent<DishDisplay>() && CheckDishAllergie());
+            computeAllergies = false;
+            //Debug.Log("is Allergic " + isAllergic);
+        }
+
         if (Input.GetKeyDown("space") && inRange) // if the player hit space and the food is in range, destroy the food
         {
-            Debug.Log("Space");
-            if (gameObject.GetComponent<IngredientDisplay>() && player.GetAllergie() == gameObject.GetComponent<IngredientDisplay>().ingredient.name
-                || gameObject.GetComponent<DishDisplay>() && CheckDishAllergie())
+            isEaten = true;
+            //Debug.Log("Eating");
+            if (isAllergic)
             {
                 score.ResetEatStreak();
                 score.AddScore(-100);
@@ -48,6 +59,9 @@ public class Eat : MonoBehaviour {
                 }
             }
 
+            if (score.GetScore() < 0)
+                player.EndGame();
+
             Destroy(gameObject);
             player.ResetFail();
         }
@@ -69,14 +83,15 @@ public class Eat : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.name == "PlayerRange") inRange = true;
-        if (col.gameObject.name == "PlayerNoRange") player.AddFail();
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
-        if (col.gameObject.name == "PlayerRange")
+        if (!isEaten && col.gameObject.name == "PlayerRange")
         {
+            player.AddFail();
             inRange = false;
+            if (!isAllergic) player.ChangeHumor("angry");
         }
     }
 }

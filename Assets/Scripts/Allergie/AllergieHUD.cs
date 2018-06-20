@@ -4,20 +4,28 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class AllergieHUD : MonoBehaviour {
-
-    [SerializeField] private Text allergieText;
+    
     [SerializeField] private Player player;
-	// Use this for initialization
-	void Start () {
-		
+    [SerializeField] private Image allergieImage;
+    [SerializeField] private GameObject allergieObject;
+
+    // Use this for initialization
+    void Start () {
+        allergieObject.SetActive(false);
 	}
 	
 	// Update is called once per frame
 	void Update () {
         if (player.GetAllergie() != null)
         {
-            allergieText.text = "Allergie : " + player.GetAllergie();
-            Debug.Log(player.GetAllergie());
+            allergieObject.SetActive(true);
+            Ingredient ingredient = Resources.Load<ScriptableObject>("Ingredients/" + player.GetAllergie()) as Ingredient;
+            if (ingredient != null)
+            {
+                allergieImage.sprite = ingredient.artwork;
+            }
         }
-	}
+        else allergieObject.SetActive(false);
+
+    }
 }

@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class ScoreHUD : MonoBehaviour {
 
     [SerializeField] private Text scoreText;
+    [SerializeField] private Text multiplierText;
+
     private Score score;
     // Use this for initialization
     void Start () {
@@ -16,6 +18,7 @@ public class ScoreHUD : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        scoreText.text = "Score : " + score.GetScore() + " (x" + score.GetMultiplicateur() + ") ";
+        scoreText.text = score.GetScore() + "cal";
+        multiplierText.text = "x" + score.GetMultiplicateur();
 	}
 }

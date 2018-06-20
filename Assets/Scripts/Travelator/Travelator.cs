@@ -37,27 +37,28 @@ public class Travelator : MonoBehaviour {
         // Create an instance of the food prefab at the spawn point's position and rotation.
         IFood obj = foods[Random.Range(0, foods.Count)];
         GameObject newFood;
+        /*
         if (obj is Ingredient)
         {
             newFood = Instantiate(ingredient, spawnPoint.position, spawnPoint.rotation);
             newFood.GetComponent<IngredientDisplay>().ingredient = obj as Ingredient;
         }
         else {
+        */
             newFood = Instantiate(dish, spawnPoint.position, spawnPoint.rotation);
             newFood.GetComponent<DishDisplay>().dish = obj as Dish;
-        }
+        //}
         newFood.transform.parent = gameObject.transform;
-
     }
 
     private void LoadFoods()
     {
         Object[] ressources = Resources.LoadAll("", typeof(IFood));
 
-        Debug.Log(ressources.Length + "Assets");
+        //Debug.Log(ressources.Length + "Assets");
         foreach (var t in ressources) {
-            foods.Add(t as IFood);
-            Debug.Log(t.name);
+            if((t as IFood) is Dish)  foods.Add(t as IFood);
+            //Debug.Log(t.name);
         }
     }
 }
