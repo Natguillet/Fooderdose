@@ -11,6 +11,7 @@ public class Travelator : MonoBehaviour {
     [SerializeField] private GameObject dish;
     private List<IFood> foods = new List<IFood>();
     private Transform spawnPoint;
+    private int timer = 2;
 
     public float SpeedTravelator
     {
@@ -29,35 +30,43 @@ public class Travelator : MonoBehaviour {
     void Start () {
         LoadFoods();
         spawnPoint = GetComponentInChildren<Transform>();
-        InvokeRepeating("Spawn", 1/speedTravelator, 1/speedTravelator * interval);
+        StartCoroutine(Spawn());
     }
 
-    void Spawn()
+    IEnumerator Spawn()
     {
-        // Create an instance of the food prefab at the spawn point's position and rotation.
-        IFood obj = foods[Random.Range(0, foods.Count)];
-        GameObject newFood;
-        if (obj is Ingredient)
-        {
-            newFood = Instantiate(ingredient, spawnPoint.position, spawnPoint.rotation);
-            newFood.GetComponent<IngredientDisplay>().ingredient = obj as Ingredient;
-        }
-        else {
+        while (true) {
+            speedTravelator = 3*Mathf.Log(5* timer,10);
+            timer++;
+            // Create an instance of the food prefab at the spawn point's position and rotation.
+            IFood obj = foods[Random.Range(0, foods.Count)];
+            GameObject newFood;
+            /*
+            if (obj is Ingredient)
+            {
+                newFood = Instantiate(ingredient, spawnPoint.position, spawnPoint.rotation);
+                newFood.GetComponent<IngredientDisplay>().ingredient = obj as Ingredient;
+            }
+            else {
+            */
             newFood = Instantiate(dish, spawnPoint.position, spawnPoint.rotation);
             newFood.GetComponent<DishDisplay>().dish = obj as Dish;
+            //}
+            newFood.transform.parent = gameObject.transform;
+            Debug.Log(speedTravelator);
+            yield return new WaitForSeconds(interval / speedTravelator);
+            Debug.Log(true);
         }
-        newFood.transform.parent = gameObject.transform;
-
     }
 
     private void LoadFoods()
     {
         Object[] ressources = Resources.LoadAll("", typeof(IFood));
 
-        Debug.Log(ressources.Length + "Assets");
+        //Debug.Log(ressources.Length + "Assets");
         foreach (var t in ressources) {
-            foods.Add(t as IFood);
-            Debug.Log(t.name);
+            if((t as IFood) is Dish)  foods.Add(t as IFood);
+            //Debug.Log(t.name);
         }
     }
 }

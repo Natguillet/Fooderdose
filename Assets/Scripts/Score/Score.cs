@@ -7,6 +7,7 @@ public class Score : MonoBehaviour {
     private int scoring = 0;
     private int multiplicateur = 1;
     private int eatStreak = 0;
+    private CameraMovement cameraController;
 
     public int Scoring
     {
@@ -23,8 +24,8 @@ public class Score : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
-	}
+        cameraController = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -33,7 +34,7 @@ public class Score : MonoBehaviour {
 
     public void AddScore(int scoreValue)
     {
-        Debug.Log(scoreValue);
+        //Debug.Log(scoreValue);
         if (scoreValue > 0) scoring = scoring + (scoreValue * multiplicateur);
         else scoring = scoring + scoreValue;
     }
@@ -63,21 +64,27 @@ public class Score : MonoBehaviour {
         switch(eatStreak)
         {
             case 0:
-                multiplicateur = 1;
+                ChangeMultiplicateur(1);
                 break;
             case 3:
-                multiplicateur = 2;
+                ChangeMultiplicateur(2);
                 break;
             case 6:
-                multiplicateur = 3;
+                ChangeMultiplicateur(3);
                 break;
             case 10:
-                multiplicateur = 4;
+                ChangeMultiplicateur(4);
                 break;
             case 15:
-                multiplicateur = 5;
+                ChangeMultiplicateur(5);
                 break;
         }
+    }
+
+    private void ChangeMultiplicateur(int m)
+    {
+        cameraController.UpdateBloomEffect(m);
+        multiplicateur = m;
     }
 
 }
