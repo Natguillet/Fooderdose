@@ -15,7 +15,6 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
         Object[] ressources = Resources.LoadAll("Ingredients", typeof(Ingredient));
         foreach (var t in ressources)
         {

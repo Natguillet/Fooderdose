@@ -7,6 +7,8 @@ public class Score : MonoBehaviour {
     private int scoring = 0;
     private int multiplicateur = 1;
     private int eatStreak = 0;
+    private int highScore = 0;
+    string highScoreKey = "HighScore";
 
     public int Scoring
     {
@@ -23,13 +25,18 @@ public class Score : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+        highScore = PlayerPrefs.GetInt(highScoreKey, 0);
 	}
 	
 	// Update is called once per frame
 	void Update () {
         CalculateMultiplicateur();
-	}
+        if (scoring > highScore)
+        {
+            PlayerPrefs.SetInt(highScoreKey, scoring);
+            PlayerPrefs.Save();
+        }
+    }
 
     public void AddScore(int scoreValue)
     {
