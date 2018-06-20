@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: Potatoe
   m_EditorClassIdentifier: 
   name: Potatoe
-  points: 0
+  points: 10
   artwork: {fileID: 21300000, guid: 1e54057a29fbdc14c82f97d8c3d2549a, type: 3}

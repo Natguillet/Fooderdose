@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: Bacon
   m_EditorClassIdentifier: 
   name: Bacon
-  points: 0
+  points: 10
   artwork: {fileID: 21300000, guid: 461d1bbadca597f4584606f955154984, type: 3}

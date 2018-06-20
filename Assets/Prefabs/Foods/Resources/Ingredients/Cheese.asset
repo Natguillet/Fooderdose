@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: Cheese
   m_EditorClassIdentifier: 
   name: Cheese
-  points: 0
+  points: 10
   artwork: {fileID: 21300000, guid: 9eee3fd7bcea4824a89ddceb42d65c6e, type: 3}

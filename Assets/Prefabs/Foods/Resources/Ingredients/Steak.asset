@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: Steak
   m_EditorClassIdentifier: 
   name: Steak
-  points: 0
+  points: 10
   artwork: {fileID: 21300000, guid: de2ccb68f14e36e4e8a4a744c64c09a9, type: 3}

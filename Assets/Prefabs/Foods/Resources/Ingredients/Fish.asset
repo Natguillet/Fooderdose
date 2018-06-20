@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: Fish
   m_EditorClassIdentifier: 
   name: Fish
-  points: 5
+  points: 10
   artwork: {fileID: 21300000, guid: f133a47fea2eabc43a80b884dae5a01c, type: 3}

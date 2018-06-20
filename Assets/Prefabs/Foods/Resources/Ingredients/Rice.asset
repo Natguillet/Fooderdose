@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: Rice
   m_EditorClassIdentifier: 
   name: Rice
-  points: 0
+  points: 10
   artwork: {fileID: 21300000, guid: 62b22c158e54bb1469567fd1bfff76ca, type: 3}
