@@ -18,7 +18,7 @@ public class ScoreHUD : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        scoreText.text = score.GetScore() + "pts";
+        scoreText.text = score.GetScore() + "cal";
         multiplierText.text = "x" + score.GetMultiplicateur();
 	}
 }

@@ -28,13 +28,13 @@ public class Eat : MonoBehaviour {
             isAllergic = (gameObject.GetComponent<IngredientDisplay>() && player.GetAllergie() == gameObject.GetComponent<IngredientDisplay>().ingredient.name
                 || gameObject.GetComponent<DishDisplay>() && CheckDishAllergie());
             computeAllergies = false;
-            Debug.Log("is Allergic " + isAllergic);
+            //Debug.Log("is Allergic " + isAllergic);
         }
 
         if (Input.GetKeyDown("space") && inRange) // if the player hit space and the food is in range, destroy the food
         {
             isEaten = true;
-            Debug.Log("Eating");
+            //Debug.Log("Eating");
             if (isAllergic)
             {
                 score.ResetEatStreak();
