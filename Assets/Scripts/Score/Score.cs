@@ -85,7 +85,6 @@ public class Score : MonoBehaviour {
     {
         cameraController.UpdateBloomEffect(m);
         multiplicateur = m;
-        
     }
 
 }
