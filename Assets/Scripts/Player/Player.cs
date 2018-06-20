@@ -5,17 +5,27 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    private string humor;
+    [SerializeField] private float timeBeforeBlase;
     [SerializeField] private Sprite happy;
     [SerializeField] private Sprite puke;
+    [SerializeField] private Sprite blase;
+    [SerializeField] private Sprite angry;
+
+    private CameraMovement cameraController;
+    private string humor;
+    private SpriteRenderer sRenderer;
     private Dictionary<string, int> foodEat = new Dictionary<string, int>();
     private string allergie;
     private int fail = 0;
+    private float lastChangeTime = 0;
     private bool loose = false;
+    private bool isStarving = false;
 
 	// Use this for initialization
 	void Start () {
-
+        cameraController = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>();
+        sRenderer = GetComponent<SpriteRenderer>();
+        ChangeHumor(null);
         Object[] ressources = Resources.LoadAll("Ingredients", typeof(Ingredient));
         foreach (var t in ressources)
         {
@@ -25,24 +35,11 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        ChangeFace();
-        if(fail >= 3)
+        lastChangeTime += Time.deltaTime;
+        if (lastChangeTime > timeBeforeBlase)
         {
-            loose = true;
-            Debug.Log("YOU LOOSE");
-        }
-    }
-
-    public void ChangeFace()
-    {
-        switch(humor)
-        {
-            case "happy":
-                gameObject.GetComponent<SpriteRenderer>().sprite = happy;
-                break;
-            case "puke":
-                gameObject.GetComponent<SpriteRenderer>().sprite = puke;
-                break;
+            sRenderer.sprite = blase;
+            ChangeHumor("blase");
         }
     }
 
@@ -52,9 +49,28 @@ public class Player : MonoBehaviour {
         ChangeAllergie(food);
     }
 
-    public void ChangeHumor(string newHumor)
+    public void ChangeHumor(string humor)
     {
-        humor = newHumor;
+        lastChangeTime = 0;
+        switch (humor)
+        {
+            case "happy":
+                sRenderer.sprite = happy;
+                transform.position = new Vector3(transform.position.x, 0.15f, transform.position.z);
+                break;
+            case "puke":
+                sRenderer.sprite = puke;
+                transform.position = new Vector3(transform.position.x, 0.61f, transform.position.z);
+                break;
+            case "angry":
+                sRenderer.sprite = angry;
+                transform.position = new Vector3(transform.position.x, 0.61f, transform.position.z);
+                break;
+            default:
+                sRenderer.sprite = blase;
+                transform.position = new Vector3(transform.position.x, 0.45f, transform.position.z);
+                break;
+        }
     }
 
     public void ChangeAllergie(string food)
@@ -71,13 +87,32 @@ public class Player : MonoBehaviour {
         return allergie;
     }
 
+    /*
+    public Sprite GetAllergieSprite()
+    {
+        return 
+    }*/
+
     public void AddFail()
     {
         fail++;
+        if (fail == 2) cameraController.SetStarvation(true);
+        if (fail >= 3)
+        {
+            loose = true;
+            EndGame();
+        }
+    }
+
+    public void EndGame()
+    {
+        cameraController.LaunchEndGameEffect();
+        Debug.Log("YOU LOOSE");
     }
 
     public void ResetFail()
     {
         fail = 0;
+        cameraController.SetStarvation(false);
     }
 }

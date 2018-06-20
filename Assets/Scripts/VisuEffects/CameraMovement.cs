@@ -6,13 +6,11 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    /*
     [SerializeField] private bool end = false;
     [SerializeField] private bool updateBloom = false;
     [SerializeField] private bool starve = false;
     [SerializeField] private bool init = false;
     [SerializeField] private int multiplier;
-    */
 
     [SerializeField] private float moveRadius;  //radius of the camera circular movement
     [SerializeField] private float moveAngle;
@@ -98,7 +96,6 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
         if (init)
         {
             init = false;
@@ -121,7 +118,6 @@ public class CameraMovement : MonoBehaviour
             starve = false;
             SetStarvation(isStarving);
         }
-        */
     }
 
     public void SetStarvation(bool starve)

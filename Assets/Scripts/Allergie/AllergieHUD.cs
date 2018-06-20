@@ -7,6 +7,7 @@ public class AllergieHUD : MonoBehaviour {
 
     [SerializeField] private Text allergieText;
     [SerializeField] private Player player;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -17,7 +18,7 @@ public class AllergieHUD : MonoBehaviour {
         if (player.GetAllergie() != null)
         {
             allergieText.text = "Allergie : " + player.GetAllergie();
-            Debug.Log(player.GetAllergie());
+            //Debug.Log(player.GetAllergie());
         }
 	}
 }
