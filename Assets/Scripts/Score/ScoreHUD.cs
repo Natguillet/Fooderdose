@@ -11,11 +11,13 @@ public class ScoreHUD : MonoBehaviour
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private Text multiplierText;
     [SerializeField] private Animation tongAnimation;
-    
+    [SerializeField] private AudioClip hightMult;
+
     private int scoring = 0;
     private int multiplicateur = 1;
     private int eatStreak = 0;
     private CameraMovement cameraController;
+    private AudioSource mSource;
 
     public int Scoring
     {
@@ -34,11 +36,11 @@ public class ScoreHUD : MonoBehaviour
     void Start()
     {
         cameraController = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>();
+        mSource = GetComponent<AudioSource>();
     }
 
     public void AddScore(int scoreValue)
     {
-        //Debug.Log(scoreValue);
         if (scoreValue > 0) scoring = scoring + (scoreValue * multiplicateur);
         else scoring = scoring + scoreValue;
     }
@@ -81,6 +83,7 @@ public class ScoreHUD : MonoBehaviour
                 break;
             case 15:
                 ChangeMultiplicateur(5);
+                mSource.PlayOneShot(hightMult);
                 break;
         }
     }
