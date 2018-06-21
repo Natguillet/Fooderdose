@@ -8,11 +8,12 @@ public class FoodMove : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        speed = GetComponentInParent<Travelator>().SpeedTravelator;
+        
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        speed = GetComponentInParent<Travelator>().SpeedTravelator;
         transform.Translate(Vector2.right * Time.deltaTime * speed);
 	}
 }

@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class LeaderBoard : MonoBehaviour {
 
-    //[SerializeField] private UnityEngine.UI.Text leaderBoardText;
     // Use this for initialization
     private HSController hsController;
+    [SerializeField] private UnityEngine.UI.Text playerScoreText;
+
     void Start () {
         hsController = GetComponent<HSController>();
         StartCoroutine(hsController.GetScores());
- 
+        Debug.Log(Player.finalScore);
+        playerScoreText.text = "Your score : " + Player.finalScore;
     }
 	
     // Update is called once per frame

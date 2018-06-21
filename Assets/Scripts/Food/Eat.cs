@@ -7,14 +7,14 @@ public class Eat : MonoBehaviour {
     // Use this for initialization
     private bool inRange = false; // detect if the food can be eat or not
     private Player player;
-    private Score score;
+    private ScoreHUD score;
     private bool isAllergic;
     private bool computeAllergies = true;
     private bool isEaten = false;
     
     void Start () {
         GameObject scoreGameObject = GameObject.FindWithTag("Score");
-        if (scoreGameObject != null) score = scoreGameObject.GetComponent<Score>();
+        if (scoreGameObject != null) score = scoreGameObject.GetComponent<ScoreHUD>();
         else Debug.Log("Cannot find score GameObject");
         GameObject playerGameObject = GameObject.FindWithTag("Player");
         if (playerGameObject != null) player = playerGameObject.GetComponent<Player>();

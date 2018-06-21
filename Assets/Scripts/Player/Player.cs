@@ -11,10 +11,12 @@ public class Player : MonoBehaviour {
     [SerializeField] private Sprite puke;
     [SerializeField] private Sprite blase;
     [SerializeField] private Sprite angry;
-    [SerializeField] private Score score;
-    //[SerializeField] private GameObject leaderBoard;
+    [SerializeField] private ScoreHUD score;
+    [SerializeField] private AudioClip goodFoodSound;
+    [SerializeField] private AudioClip badFoodSound;
 
     private CameraMovement cameraController;
+    private AudioSource mSource;
     private string humor;
     private SpriteRenderer sRenderer;
     private Dictionary<string, int> foodEat = new Dictionary<string, int>();
@@ -24,10 +26,12 @@ public class Player : MonoBehaviour {
     private bool loose = false;
     private bool isStarving = false;
     private HSController hsController;
+    static public int finalScore = 0;
 
 	// Use this for initialization
 	void Start () {
         hsController = GetComponent<HSController>();
+        mSource = GetComponent<AudioSource>();
         cameraController = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>();
         sRenderer = GetComponent<SpriteRenderer>();
         ChangeHumor(null);
@@ -61,10 +65,12 @@ public class Player : MonoBehaviour {
         {
             case "happy":
                 sRenderer.sprite = happy;
+                mSource.PlayOneShot(goodFoodSound);
                 transform.position = new Vector3(transform.position.x, 0.15f, transform.position.z);
                 break;
             case "puke":
                 sRenderer.sprite = puke;
+                mSource.PlayOneShot(badFoodSound);
                 transform.position = new Vector3(transform.position.x, 0.61f, transform.position.z);
                 break;
             case "angry":
@@ -91,6 +97,7 @@ public class Player : MonoBehaviour {
     {
         return allergie;
     }
+    
 
     public void AddFail()
     {
@@ -105,11 +112,12 @@ public class Player : MonoBehaviour {
 
     IEnumerator LoadScene(string sceneName)
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3);
         SceneManager.LoadScene(sceneName);
     }
     public void EndGame()
     {
+        finalScore = score.GetScore();
         StartCoroutine(hsController.PostScores("Dorian", score.GetScore()));
         cameraController.LaunchEndGameEffect();
         StartCoroutine(LoadScene("LeaderBoardScene"));

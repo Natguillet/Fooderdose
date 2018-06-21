@@ -49,7 +49,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1297993083139890}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4452164823645046}
@@ -80,7 +80,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 929b43c32a901524b980bcd311b14e66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedTravelator: 2
+  speedTravelator: 6
   interval: 10
   ingredient: {fileID: 1604789091516868, guid: da1d8ee28a85f4a4e8d803dd0d7806c1, type: 2}
   dish: {fileID: 1676475236796338, guid: 7c94feea9f1f0924a8cf0d714785e1b1, type: 2}
+  rug: {fileID: 1689733067705066, guid: bd26630c06be79341a60c6fa75a7abd3, type: 2}
+  nbRugs: 10
+  startRug: {fileID: 0}
+  endRug: {fileID: 0}
