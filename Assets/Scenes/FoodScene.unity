@@ -233,12 +233,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114241888705482872, guid: 7c94feea9f1f0924a8cf0d714785e1b1,
-        type: 2}
-      propertyPath: dish
-      value: 
-      objectReference: {fileID: 11400000, guid: b808080ffcf7e00418e35ef4a64a87aa,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c94feea9f1f0924a8cf0d714785e1b1, type: 2}
   m_IsPrefabParent: 0

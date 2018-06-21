@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class HSController : MonoBehaviour {
 
-    private string secretKey = "mySecretKey"; // Edit this value and make sure it's the same as the one stored on the server
-    public string addScoreURL = "http://localhost/unity_test/addscore.php?"; //be sure to add a ? to your url
-    public string highscoreURL = "http://localhost/unity_test/display.php";
+    private string secretKey = "CarlosPowa"; // Edit this value and make sure it's the same as the one stored on the server
+    public string addScoreURL = "http://35.237.11.130:8080/addscore.php?"; //be sure to add a ? to your url
+    public string highscoreURL = "http://35.237.11.130:8080/display.php";
 
     // Use this for initialization
     void Start () {
-        StartCoroutine(GetScores());	
+        //StartCoroutine(GetScores());	
 	}
 	
-	IEnumerator PostScores(string name, int score)
+	public IEnumerator PostScores(string name, int score)
     {
         //This connects to a server side php script that will add the name and score to a MySQL DB.
         // Supply it with a string representing the players name and the players score.
         string hash = MD5Test.Md5Sum(name + score + secretKey);
 
         string post_url = addScoreURL + "name=" + WWW.EscapeURL(name) + "&score=" + score + "&hash=" + hash;
-
+        Debug.Log("name " + WWW.EscapeURL(name));
         // Post the URL to the site and create a download object to get the result.
         WWW hs_post = new WWW(post_url);
         yield return hs_post; // Wait until the download is done
@@ -31,9 +31,9 @@ public class HSController : MonoBehaviour {
         }
     }
 
-    IEnumerator GetScores()
+    public IEnumerator GetScores()
     {
-        GetComponent<GUIText>().text = "Loading Scores";
+        GetComponent<UnityEngine.UI.Text>().text = "Loading Scores";
         WWW hs_get = new WWW(highscoreURL);
         yield return hs_get;
 
@@ -43,7 +43,7 @@ public class HSController : MonoBehaviour {
         }
         else
         {
-            GetComponent<GUIText>().text = hs_get.text; // this is a GUIText that will display the scores in game.
+            GetComponent<UnityEngine.UI.Text>().text = hs_get.text; // this is a GUIText that will display the scores in game.
         }
     }
 }

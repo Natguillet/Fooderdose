@@ -291,6 +291,7 @@ GameObject:
   - component: {fileID: 612924531}
   - component: {fileID: 612924530}
   - component: {fileID: 612924532}
+  - component: {fileID: 612924533}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -372,7 +373,20 @@ MonoBehaviour:
   puke: {fileID: 21300000, guid: 2a1a2a28699b4ac49a4fe5b46a93c5ba, type: 3}
   blase: {fileID: 21300000, guid: d865126e560d5794882bdb4fc12956a5, type: 3}
   angry: {fileID: 21300000, guid: d0a29aa1b5325c14f9bd5122fe3a2bba, type: 3}
-  leaderBoard: {fileID: 1470348967}
+  score: {fileID: 1896288040}
+--- !u!114 &612924533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 612924529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 408de3f7f75bdf44285616f5bb6da435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  addScoreURL: http://35.237.11.130:8080/addscore.php?
+  highscoreURL: http://35.237.11.130:8080/display.php
 --- !u!1 &647460565
 GameObject:
   m_ObjectHideFlags: 0
@@ -919,8 +933,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dd562b18bee1ab4e86d54ddca730124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leaderBoardText: {fileID: 1007287919}
-  highScore: 0
 --- !u!1 &1487448988
 GameObject:
   m_ObjectHideFlags: 0
@@ -1302,6 +1314,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1896288041}
   - component: {fileID: 1896288040}
+  - component: {fileID: 1896288042}
   m_Layer: 0
   m_Name: Score
   m_TagString: Score
@@ -1334,6 +1347,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1896288042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1896288039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 408de3f7f75bdf44285616f5bb6da435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  addScoreURL: http://localhost/unity_test/addscore.php?
+  highscoreURL: http://localhost/unity_test/display.php
 --- !u!1 &1903443170
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ public class Player : MonoBehaviour {
     [SerializeField] private Sprite puke;
     [SerializeField] private Sprite blase;
     [SerializeField] private Sprite angry;
+    [SerializeField] private Score score;
     //[SerializeField] private GameObject leaderBoard;
 
     private CameraMovement cameraController;
@@ -22,9 +23,11 @@ public class Player : MonoBehaviour {
     private float lastChangeTime = 0;
     private bool loose = false;
     private bool isStarving = false;
+    private HSController hsController;
 
 	// Use this for initialization
 	void Start () {
+        hsController = GetComponent<HSController>();
         cameraController = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>();
         sRenderer = GetComponent<SpriteRenderer>();
         ChangeHumor(null);
@@ -89,12 +92,6 @@ public class Player : MonoBehaviour {
         return allergie;
     }
 
-    /*
-    public Sprite GetAllergieSprite()
-    {
-        return 
-    }*/
-
     public void AddFail()
     {
         fail++;
@@ -106,13 +103,16 @@ public class Player : MonoBehaviour {
         }
     }
 
+    IEnumerator LoadScene(string sceneName)
+    {
+        yield return new WaitForSeconds(4);
+        SceneManager.LoadScene(sceneName);
+    }
     public void EndGame()
     {
-        float time = 0;
+        StartCoroutine(hsController.PostScores("Dorian", score.GetScore()));
         cameraController.LaunchEndGameEffect();
-        SceneManager.LoadScene("LeaderBoardScene");
-        Debug.Log("YOU LOOSE");
-        //leaderBoard.SetActive(true);
+        StartCoroutine(LoadScene("LeaderBoardScene"));
     }
 
     public void ResetFail()
