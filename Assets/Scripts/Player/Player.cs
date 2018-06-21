@@ -10,8 +10,11 @@ public class Player : MonoBehaviour {
     [SerializeField] private Sprite puke;
     [SerializeField] private Sprite blase;
     [SerializeField] private Sprite angry;
+    [SerializeField] private AudioClip goodFoodSound;
+    [SerializeField] private AudioClip badFoodSound;
 
     private CameraMovement cameraController;
+    private AudioSource mSource;
     private string humor;
     private SpriteRenderer sRenderer;
     private Dictionary<string, int> foodEat = new Dictionary<string, int>();
@@ -23,6 +26,7 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        mSource = GetComponent<AudioSource>();
         cameraController = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>();
         sRenderer = GetComponent<SpriteRenderer>();
         ChangeHumor(null);
@@ -56,10 +60,12 @@ public class Player : MonoBehaviour {
         {
             case "happy":
                 sRenderer.sprite = happy;
+                mSource.PlayOneShot(goodFoodSound);
                 transform.position = new Vector3(transform.position.x, 0.15f, transform.position.z);
                 break;
             case "puke":
                 sRenderer.sprite = puke;
+                mSource.PlayOneShot(badFoodSound);
                 transform.position = new Vector3(transform.position.x, 0.61f, transform.position.z);
                 break;
             case "angry":
@@ -86,6 +92,7 @@ public class Player : MonoBehaviour {
     {
         return allergie;
     }
+    
 
     /*
     public Sprite GetAllergieSprite()
