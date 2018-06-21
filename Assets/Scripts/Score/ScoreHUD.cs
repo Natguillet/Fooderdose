@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class ScoreHUD : MonoBehaviour
 {
 
-    [SerializeField] private Text scoreText;
+    [SerializeField] private TMP_Text scoreText;
     [SerializeField] private Text multiplierText;
     [SerializeField] private Animation tongAnimation;
     
