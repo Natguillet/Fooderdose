@@ -116,6 +116,7 @@ public class Player : MonoBehaviour {
         yield return new WaitForSeconds(2);
         gameOver.SetActive(true);
         yield return new WaitForSeconds(2);
+        MainMenu.comingFromMenu = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public void EndGame()

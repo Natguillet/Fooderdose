@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour {
 
     [SerializeField]private TMP_InputField inputPseudo;
     public static string pseudo;
+    public static bool comingFromMenu = false;
 
     public void PlayGame() {
         pseudo = inputPseudo.text;
@@ -15,7 +16,8 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void Leaderboard() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        comingFromMenu = true;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
     }
 
 }

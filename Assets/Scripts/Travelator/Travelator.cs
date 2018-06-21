@@ -70,7 +70,7 @@ public class Travelator : MonoBehaviour {
     private IEnumerator Spawn()
     {
         while (true) {
-            speedTravelator = 3 * Mathf.Log(5 * timer,10);
+            speedTravelator = 6 * Mathf.Log(6 * timer,10);
             timer++;
             // Create an instance of the food prefab at the spawn point's position and rotation.
             IFood obj = foods[Random.Range(0, foods.Count)];
