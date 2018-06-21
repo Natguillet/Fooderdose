@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class HSController : MonoBehaviour {
 
+    [SerializeField] private TMP_Text leaderBoardText;
     private string secretKey = "CarlosPowa"; // Edit this value and make sure it's the same as the one stored on the server
     public string addScoreURL = "http://35.237.11.130:8080/addscore.php?"; //be sure to add a ? to your url
     public string highscoreURL = "http://35.237.11.130:8080/display.php";
+
 
     // Use this for initialization
     void Start () {
@@ -33,7 +36,7 @@ public class HSController : MonoBehaviour {
 
     public IEnumerator GetScores()
     {
-        GetComponent<UnityEngine.UI.Text>().text = "Loading Scores";
+        leaderBoardText.text = "Loading Scores";
         WWW hs_get = new WWW(highscoreURL);
         yield return hs_get;
 
@@ -43,7 +46,7 @@ public class HSController : MonoBehaviour {
         }
         else
         {
-            GetComponent<UnityEngine.UI.Text>().text = hs_get.text; // this is a GUIText that will display the scores in game.
+            leaderBoardText.text = " High Scores : " + "\n" + hs_get.text; // this is a GUIText that will display the scores in game.
         }
     }
 }

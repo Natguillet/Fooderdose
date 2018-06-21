@@ -1,18 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class LeaderBoard : MonoBehaviour {
 
     // Use this for initialization
     private HSController hsController;
-    [SerializeField] private UnityEngine.UI.Text playerScoreText;
+    [SerializeField] private TMP_Text playerScoreText;
 
     void Start () {
         hsController = GetComponent<HSController>();
         StartCoroutine(hsController.GetScores());
-        Debug.Log(Player.finalScore);
-        playerScoreText.text = "Your score : " + Player.finalScore;
+        playerScoreText.text = "" + Player.finalScore;
     }
 	
     // Update is called once per frame
@@ -22,6 +23,6 @@ public class LeaderBoard : MonoBehaviour {
 
     public void ChangeScene(string sceneName)
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }

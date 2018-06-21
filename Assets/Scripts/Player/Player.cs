@@ -14,6 +14,7 @@ public class Player : MonoBehaviour {
     [SerializeField] private ScoreHUD score;
     [SerializeField] private AudioClip goodFoodSound;
     [SerializeField] private AudioClip badFoodSound;
+    [SerializeField] private GameObject gameOver;
 
     private CameraMovement cameraController;
     private AudioSource mSource;
@@ -110,17 +111,19 @@ public class Player : MonoBehaviour {
         }
     }
 
-    IEnumerator LoadScene(string sceneName)
+    IEnumerator End()
     {
-        yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(sceneName);
+        yield return new WaitForSeconds(2);
+        gameOver.SetActive(true);
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public void EndGame()
     {
         finalScore = score.GetScore();
-        StartCoroutine(hsController.PostScores("Dorian", score.GetScore()));
+        StartCoroutine(hsController.PostScores(MainMenu.pseudo, score.GetScore()));
         cameraController.LaunchEndGameEffect();
-        StartCoroutine(LoadScene("LeaderBoardScene"));
+        StartCoroutine(End());
     }
 
     public void ResetFail()
